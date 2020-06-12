@@ -22,7 +22,7 @@
     </div>
   </ion-grid>
 
-  <ion-grid *ngIf="items.length">
+  <ion-grid *ngIf="items && items.length">
     <ion-list *ngFor="let item of items; let i=index">
       <ion-item-divider color="secondary" *ngIf="showDateLavel(i, item)">
         <ion-label> {{ item.dueDate | date : 'dd-MM-yyyy'}} </ion-label>

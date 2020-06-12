@@ -18,8 +18,10 @@ export class HomePage {
 
   constructor() { }
 
-  async ionViewWillEnter() {
-    await this.getWorks();
+  ionViewWillEnter() {
+    this.getWorks().then(() => { }).catch(err => {
+      console.log(err);
+    });
   }
 
   public async onEditing(item: ITodos): Promise<void> {
@@ -74,10 +76,15 @@ export class HomePage {
   }
 
 
-  async getWorks(): Promise<void> {
+  async getWorks(): Promise<any> {
     const ret = await Storage.get({ key: 'work' });
-    const works = JSON.parse(ret.value);
-    this.items = works;
+    if (ret.value != null) {
+      const works = JSON.parse(ret.value);
+      this.items = works;
+    } else {
+      this.items = [];
+    }
+    return this.items;
   }
 
   showDateLavel(indx: number, item: ITodos): boolean {

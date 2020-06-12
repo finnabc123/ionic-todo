@@ -13,12 +13,16 @@
         <ion-label position="floating">List of works</ion-label>
         <ion-input [(ngModel)]="workName"></ion-input>
       </ion-item>
-      <ion-fab-button class="btn-add" [disabled]="!workName">
-        <ion-icon name="add" (click)="onAddWork(workName)"></ion-icon>
-      </ion-fab-button>
-      <ion-fab-button *ngIf="showCancel" class="btn-close" color="danger">
-        <ion-icon name="close" (click)="onCancelWork()"></ion-icon>
-      </ion-fab-button>
+    </div>
+    <div class="btn-fab">
+      <ion-card>
+        <ion-fab-button class="btn-add" [disabled]="!workName" size="small">
+          <ion-icon name="add" (click)="onAddWork(workName)"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button [disabled]="!showCancel" color="danger" size="small">
+          <ion-icon name="close" (click)="onCancelWork()"></ion-icon>
+        </ion-fab-button>
+      </ion-card>
     </div>
   </ion-grid>
 

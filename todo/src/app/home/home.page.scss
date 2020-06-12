@@ -2,16 +2,11 @@ ion-content {
   ion-grid {
     .input-container {
       width: 100%;
-      ion-item {
-        width: 65%;
-      }
+    }
+    .btn-fab {
+      width: 100%;
       .btn-add {
         float: right;
-        margin: -4em 0 0 0;
-      }
-      .btn-close {
-        float: right;
-        margin: -4em 4.5em 0 0;
       }
     }
     ion-item-sliding ion-item {

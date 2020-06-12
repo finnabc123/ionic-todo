@@ -13,26 +13,32 @@
         <ion-label position="floating">List of works</ion-label>
         <ion-input [(ngModel)]="workName"></ion-input>
       </ion-item>
-      <span>
-        <ion-fab-button [disabled]="!workName">
-          <ion-icon name="add" (click)="onAddWork(workName)"></ion-icon>
-        </ion-fab-button>
-      </span>
+      <ion-fab-button class="btn-add" [disabled]="!workName">
+        <ion-icon name="add" (click)="onAddWork(workName)"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button *ngIf="showCancel" class="btn-close" color="danger">
+        <ion-icon name="close" (click)="onCancelWork()"></ion-icon>
+      </ion-fab-button>
     </div>
   </ion-grid>
 
   <ion-grid *ngIf="items.length">
     <ion-list *ngFor="let item of items; let i=index">
-      <ion-item>
-        <ion-item-sliding>
+      <ion-item-divider color="secondary" *ngIf="showDateLavel(i, item)">
+        <ion-label> {{ item.dueDate | date : 'dd-MM-yyyy'}} </ion-label>
+      </ion-item-divider>
+      <ion-item lines="none">
+        <ion-item-sliding [disabled]="disableButton(item.dueDate)">
           <ion-item-options side="start">
-            <ion-item-option (click)="onEditing(item)">
+            <ion-item-option (click)="onEditing(item) ">
               <ion-icon name="create" slot="icon-only"></ion-icon>
             </ion-item-option>
           </ion-item-options>
           <ion-item>
-            <ion-checkbox color="success" [(ngModel)]="item.isChecked"></ion-checkbox>
-            <ion-label [ngClass]="{'completed': item.isChecked, 'uncompleted': !item.isChecked}">{{ item.todoName }}
+            <ion-checkbox color="success" [(ngModel)]="item.isChecked" [disabled]="disableButton(item.dueDate)">
+            </ion-checkbox>
+            <ion-label class="ion-text-wrap" [ngClass]="{'completed': item.isChecked, 'uncompleted': !item.isChecked}">
+              {{ item.todoName }}
             </ion-label>
           </ion-item>
           <ion-item-options side="end">

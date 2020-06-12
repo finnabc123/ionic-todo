@@ -5,10 +5,13 @@ ion-content {
       ion-item {
         width: 75%;
       }
-      span {
-        width: 15%;
+      .btn-add {
         float: right;
-        margin: -3.5rem 0 0 0;
+        margin: -4em 0 0 0;
+      }
+      .btn-close {
+        float: right;
+        margin: -4em 4.5em 0 0;
       }
     }
     ion-item-sliding ion-item {
